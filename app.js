@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors'); //för att kunna köra från local till local på nåt sätt
 const morgan = require('morgan');
-const port = 1337; //måste detta ändras med tanke på att expresser ligger på samma server???
+const port = 8333; //me-app lyssnar på 1337
 
 const bodyParser = require("body-parser");
 
