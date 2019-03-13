@@ -1,0 +1,21 @@
+{
+  "name": "rm2back",
+  "version": "1.0.0",
+  "description": "backend for project ramverk2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KW",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "morgan": "^1.9.1",
+    "sqlite3": "^4.0.6",
+    "ws": "^6.2.0"
+  }
+}
