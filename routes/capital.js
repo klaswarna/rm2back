@@ -9,10 +9,10 @@ const saltRounds = 10;
 router.post('/', async function(req, res, next) {
     var data;
     var token = req.body.token;
-    console.log("inkommen token är:" + token)
+    //console.log("inkommen token är:" + token)
     var data = await bors.showCapital(token);
-    console.log("data som återskickas är:");
-    console.log(data);
+    //console.log("data som återskickas är:");
+    //console.log(data);
     res.json(data);
     });
 

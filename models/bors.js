@@ -29,7 +29,7 @@ function randValue() {
 }
 
 
-function updateValue(inarray) {
+async function updateValue(inarray) {
     var varden = randValue();
     //console.log("nu uppdaterades värdena");
     for (var i=0 ; i < 5; i++) {
@@ -92,23 +92,7 @@ async function getValue() {
 
 async function reset() {
     console.log("databasen återställs");
-    await db.run("UPDATE bolag SET amount1 = ?, amount2 = ?, amount3 = ?, amount4 = ?, amount5 = ? WHERE name = ?",
-        100,
-        100,
-        100,
-        100,
-        100,
-        "portfolj",
-        (err) => {
-        if (err) {
-            // returnera error
-            console.log("Något sket sig när databasens börsvärde skulle nollställas: " + err);
-            return
-        } else {
-            // if went well
-            return
-        }
-    });
+    process.env.BORS="reset"
 }
 
 async function showCapital(token) {

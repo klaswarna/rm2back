@@ -73,11 +73,16 @@ app.use('/capital', capital);
 // }, 10000);
 
 
-setInterval(function() {
+setInterval(async function() {
+    if(process.env.BORS=="reset") {
+        aktier = {
+            aktier: [100, 100, 100, 100, 100]
+        }
+        process.env.BORS=="true"
+    }
     if(process.env.BORS=="true") {
-        aktier = bors.updateValue(aktier);
-        //var data = await currentStock();
-        console.log(aktier);
+        aktier = await bors.updateValue(aktier);
+        //console.log(aktier);
         wss.broadcast(JSON.stringify(aktier));
     }
 }, 10000);
