@@ -28,7 +28,9 @@ const wss = new Websocket.Server({
     handleProtocols: handleProtocols
 });
 
-
+var aktier = {
+    aktier: [100, 100, 100, 100, 100]
+}
 
 
 app.use(cors());
@@ -61,14 +63,27 @@ app.use('/login', login);
 app.use('/reset', reset);
 app.use('/capital', capital);
 
+// setInterval(async function() {
+//     if(process.env.BORS=="true") {
+//         bors.updateValue();
+//         var data = await currentStock();
+//         console.log(data);
+//         wss.broadcast(JSON.stringify(data));
+//     }
+// }, 10000);
+
+
 setInterval(async function() {
     if(process.env.BORS=="true") {
-        bors.updateValue();
-        var data = await currentStock();
-        console.log(data);
+        aktier = bors.updateValue(aktier);
+        //var data = await currentStock();
+        console.log(aktier);
         wss.broadcast(JSON.stringify(data));
     }
 }, 10000);
+
+
+
 
 
 /// websocket trixande

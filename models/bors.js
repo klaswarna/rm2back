@@ -29,29 +29,40 @@ function randValue() {
 }
 
 
-async function updateValue() {
+async function updateValue(inarray) {
     var varden = randValue();
     //console.log("nu uppdaterades värdena");
-
-    await db.run("UPDATE bolag SET amount1 = amount1 * ?, amount2 = amount2 * ?, amount3 = amount3 * ?, amount4 = amount4 * ?, amount5 = amount5 * ? WHERE name = ?",
-        varden[0],
-        varden[1],
-        varden[2],
-        varden[3],
-        varden[4],
-        "portfolj",
-        (err) => {
-        if (err) {
-            // returnera error
-            console.log("Något sket sig när databasens börsvärde skulle uppdateras: " + err);
-            return
-        } else {
-            // if went well
-            //console.log("Börsvärdet uppdaterat");
-            return
-        }
-    });
+    for (var i=0 ; i < 5; i++) {
+        inarray[i] = inarray[i] * varden[i];
+    }
+    return inarray;
 }
+
+// async function updateValue() {
+//     var varden = randValue();
+//     //console.log("nu uppdaterades värdena");
+//
+//     await db.run("UPDATE bolag SET amount1 = amount1 * ?, amount2 = amount2 * ?, amount3 = amount3 * ?, amount4 = amount4 * ?, amount5 = amount5 * ? WHERE name = ?",
+//         varden[0],
+//         varden[1],
+//         varden[2],
+//         varden[3],
+//         varden[4],
+//         "portfolj",
+//         (err) => {
+//         if (err) {
+//             // returnera error
+//             console.log("Något sket sig när databasens börsvärde skulle uppdateras: " + err);
+//             return
+//         } else {
+//             // if went well
+//             //console.log("Börsvärdet uppdaterat");
+//             return
+//         }
+//     });
+// }
+
+
 
 function getPromisedValue() {
     return new Promise(function(resolve, reject) {
