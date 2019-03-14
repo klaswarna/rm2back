@@ -8,9 +8,15 @@ const aktier = require("../app.js");
 
 
 router.get('/', function(req, res, next) {
-    console.log("aktier är: ");
-    console.log(aktier);
-    res.json(aktier.aktier);
+
+    res.json({
+        msg:"Servern är igång!",
+        instruktioner: [
+            "Använd rm2back.kwramverk.me/reset för att nollställa aktiekurserna till 100",
+            "Använd rm2back.kwramverk.me/reset/start för att aktivera automatisk uppdatering var 10:e sekund",
+            "Använd rm2back.kwramverk.me/reset/stop för att inaktivera automatisk uppdatering var 10:e sekund"
+        ]
+    });
 });
 
 

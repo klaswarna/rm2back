@@ -195,9 +195,6 @@ server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });
 
-module.exports = {
-    aktier : aktier,
-};
 
 
 //app.listen(port, () => console.log(`rm2back API listening on port ${port}!`)); // originalet
