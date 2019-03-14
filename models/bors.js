@@ -29,11 +29,11 @@ function randValue() {
 }
 
 
-async function updateValue(inarray) {
+function updateValue(inarray) {
     var varden = randValue();
     //console.log("nu uppdaterades värdena");
     for (var i=0 ; i < 5; i++) {
-        inarray[i] = inarray[i] * varden[i];
+        inarray.aktier[i] = inarray.aktier[i] * varden[i];
     }
     return inarray;
 }

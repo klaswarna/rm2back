@@ -73,12 +73,12 @@ app.use('/capital', capital);
 // }, 10000);
 
 
-setInterval(async function() {
+setInterval(function() {
     if(process.env.BORS=="true") {
         aktier = bors.updateValue(aktier);
         //var data = await currentStock();
         console.log(aktier);
-        wss.broadcast(JSON.stringify(data));
+        wss.broadcast(JSON.stringify(aktier));
     }
 }, 10000);
 
@@ -152,21 +152,21 @@ wss.on("connection", (ws /*, req*/) => {
 
 
 
-async function currentStock(res, err) {
-    var value = await bors.getValue();
-    const data = {
-        "aktier": [
-            value.amount1,
-            value.amount2,
-            value.amount3,
-            value.amount4,
-            value.amount5
-        ]
-    };
-
-    return data;
-    console.log(data);
-};
+// async function currentStock(res, err) {
+//     var value = await bors.getValue();
+//     const data = {
+//         "aktier": [
+//             value.amount1,
+//             value.amount2,
+//             value.amount3,
+//             value.amount4,
+//             value.amount5
+//         ]
+//     };
+//
+//     return data;
+//     console.log(data);
+// };
 
 
 
@@ -195,5 +195,6 @@ server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });
 
+module.exports = aktier; // vet ej om detta funkar
 
 //app.listen(port, () => console.log(`rm2back API listening on port ${port}!`)); // originalet
