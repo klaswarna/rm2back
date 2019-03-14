@@ -3,7 +3,7 @@ var router = express.Router();
 var url = require("url");
 
 const bors = require("../models/bors.js");
-const aktier = require("./app.js");
+const aktier = require("../app.js");
 
 
 // router.get('/', async function(req, res, next) {
