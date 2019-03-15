@@ -1,10 +1,8 @@
 /**
- * A module exporting functions to access the database.
+ * A module exporting functions to access and modify the stock database.
  */
 "use strict";
 
-
-//const sqlite3 = require('sqlite3').verbose();
 
 const jwt = require('jsonwebtoken');
 const db = require("../db/database.js");
@@ -31,38 +29,20 @@ function randValue() {
 
 async function updateValue(inarray) {
     var varden = randValue();
-    //console.log("nu uppdaterades värdena");
     for (var i=0 ; i < 5; i++) {
         inarray.aktier[i] = inarray.aktier[i] * varden[i];
     }
     return inarray;
 }
 
-// async function updateValue() {
-//     var varden = randValue();
-//     //console.log("nu uppdaterades värdena");
-//
-//     await db.run("UPDATE bolag SET amount1 = amount1 * ?, amount2 = amount2 * ?, amount3 = amount3 * ?, amount4 = amount4 * ?, amount5 = amount5 * ? WHERE name = ?",
-//         varden[0],
-//         varden[1],
-//         varden[2],
-//         varden[3],
-//         varden[4],
-//         "portfolj",
-//         (err) => {
-//         if (err) {
-//             // returnera error
-//             console.log("Något sket sig när databasens börsvärde skulle uppdateras: " + err);
-//             return
-//         } else {
-//             // if went well
-//             //console.log("Börsvärdet uppdaterat");
-//             return
-//         }
-//     });
-// }
 
 
+async function getValue() {
+    var vardet = await getPromisedValue().then(function(value) {
+        return value;
+    });
+    return vardet;
+}
 
 function getPromisedValue() {
     return new Promise(function(resolve, reject) {
@@ -80,14 +60,6 @@ function getPromisedValue() {
     })
 }
 
-async function getValue() {
-    var vardet = await getPromisedValue().then(function(value) {
-        //console.log(value);
-        return value;
-    });
-    //console.log("vardet: " + vardet);
-    return vardet;
-}
 
 
 async function reset() {
@@ -108,7 +80,7 @@ function promiseShowCapital(token) {
             if (err) {
                 console.log("invalid token: " + err)
             } else { // nu har token krypterats
-                console.log("krypterade grejer: ");
+                console.log("dekrypterat innehåll: ");
                 console.log(decoded);
                 db.all("SELECT * FROM innehav WHERE email = ?",
                     decoded.email,
@@ -117,7 +89,7 @@ function promiseShowCapital(token) {
                         reject({error: "Något blev fel vid check av innehav: " + err});
                     } else {
                         if (row.length == 0) {
-                            resolve({}) //eventuellt skicka nåt relevant meddelande här att inloggningsuppg. felaktiga
+                            resolve({}) //eventuellt skicka nåt relevant meddelande här att inloggningsuppg.felaktiga
                         } else {
                             resolve({capital:row[0].kapital, stock: [row[0].stock1, row[0].stock2, row[0].stock3, row[0].stock4, row[0].stock5]})
                         }
@@ -134,7 +106,7 @@ async function buy(token, bolag, antal) {
         console.log("Det fuckade sig: ");
         console.log(error);
     })
-    };
+};
 
 
 function promiseBuy(token, bolag, antal) {
@@ -161,7 +133,7 @@ function promiseBuy(token, bolag, antal) {
 
 async function insert(token, cash) {
     await promiseInsert(token, cash).catch(function(error) {
-        console.log("Det fuckade sig vid pengainsättning: ");
+        console.log("Fel vid pengainsättning: ");
         console.log(error);
     })
     };
@@ -188,10 +160,6 @@ function promiseInsert(token, cash) {
         })
     })
 }
-
-
-
-
 
 
 module.exports = {

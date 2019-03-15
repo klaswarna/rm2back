@@ -35,7 +35,7 @@ function promiseNewStockholder(email) {
             email,
             (err) => {
             if (err) {
-                reject({error: "Fuckade sig när ny post i innehav tillades: " + err});
+                reject({error: "Fel när ny post i innehav tillades: " + err});
             } else {
                 resolve({msg: "ny kapitalinnehavare"}) //
             }
@@ -87,16 +87,14 @@ function promiseLogin(email, password) {
             } else {
                 if (row.length == 0) {
                     reject({error: "Användaren finns ej."});
-                    //resolve({}) //eventuellt skicka nåt relevant meddelande här att inloggningsuppg. felaktiga
                 } else {
                     if (bcrypt.compareSync(password, row[0].password)) {
                         var payload = {
                             email: row[0].email,
                             name: row[0].name,
-                            //password: row[0].password
                         }
                         var token = jwt.sign(payload, secret, {expiresIn: '1h'});
-                        resolve({email: row[0].email, name: row[0].name, /*password: row[0].password,*/ token: token})
+                        resolve({email: row[0].email, name: row[0].name, token: token})
                     } else {
                         reject({error: "Fellösenord"});
                     }
@@ -106,7 +104,6 @@ function promiseLogin(email, password) {
         });
     })
 }
-
 
 
 module.exports = {

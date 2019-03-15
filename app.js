@@ -3,19 +3,14 @@ const app = express();
 const cors = require('cors'); //för att kunna köra från local till local på nåt sätt
 const morgan = require('morgan');
 const port = 1337; //me-app lyssnar på 8333
-
 const bodyParser = require("body-parser");
-
-
 const index = require('./routes/index');
 const signin = require('./routes/signin');
 const login = require('./routes/login');
 const reset = require('./routes/reset');
 const capital = require('./routes/capital');
 const webs = require('./routes/websocket');
-
 const bors = require("./models/bors.js");
-
 
 //för websocket
 const http = require("http");
@@ -63,23 +58,14 @@ app.use('/login', login);
 app.use('/reset', reset);
 app.use('/capital', capital);
 
-// setInterval(async function() {
-//     if(process.env.BORS=="true") {
-//         bors.updateValue();
-//         var data = await currentStock();
-//         console.log(data);
-//         wss.broadcast(JSON.stringify(data));
-//     }
-// }, 10000);
-
 
 setInterval(async function() {
     if(process.env.BORS=="reset") {
         aktier = {
             aktier: [100, 100, 100, 100, 100]
         }
-        process.env.BORS=="true"
-    }
+        process.env.BORS="true";
+    };
     if(process.env.BORS=="true") {
         aktier = await bors.updateValue(aktier);
         //console.log(aktier);
@@ -91,8 +77,6 @@ setInterval(async function() {
 
 
 
-/// websocket trixande
-//Bestämma subprotokoll
 /**
  * Select subprotocol to use for connection.
  *
@@ -148,58 +132,12 @@ wss.on("connection", (ws /*, req*/) => {
     ws.on("close", (code, reason) => {
         console.log(`Closing connection: ${code} ${reason}`);
         console.log(`Client disconnected (${wss.clients.size}).`)
-        //wss.broadcastExcept(ws, `Client disconnected (${wss.clients.size}).`);
     });
 });
 
 
-//wss.on("connection", (ws, req) => {webs.websocket(ws, req, wss)});
-
-
-
-// async function currentStock(res, err) {
-//     var value = await bors.getValue();
-//     const data = {
-//         "aktier": [
-//             value.amount1,
-//             value.amount2,
-//             value.amount3,
-//             value.amount4,
-//             value.amount5
-//         ]
-//     };
-//
-//     return data;
-//     console.log(data);
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-// Handle websocket requests
-wss.on("connection", (ws, req) => {webs.websocket(ws, req, wss)});
-/// slut websockettrixande
-*/
 
 // Startup server (med websocket)
 server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });
-
-
-
-//app.listen(port, () => console.log(`rm2back API listening on port ${port}!`)); // originalet
