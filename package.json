@@ -6,7 +6,9 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha test/**/*.js",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
+    "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "start": "node app.js",
+    "production": "NODE_ENV='production' node app.js"
   },
   "author": "KW",
   "license": "ISC",
