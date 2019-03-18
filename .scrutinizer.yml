@@ -13,12 +13,11 @@ build:
                 override:
                     - js-scrutinizer-run
 
-        coverage:
-            tests:
-                override:
-                    -
-                        #command: 'istanbul cover --report clover test.js'
-                        command: 'npm run test-scrutinizer'
-                        coverage:
-                            file: 'coverage/clover.xml'
-                            format: 'clover'
+    tests:
+        override:
+            -
+                #command: 'istanbul cover --report clover test.js'
+                command: 'npm run test-scrutinizer'
+                coverage:
+                    file: 'coverage/clover.xml'
+                    format: 'clover'
