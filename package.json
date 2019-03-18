@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "chmod 777 db && nyc --reporter=html --reporter=text mocha test/**/*.js",
+    "test-scrutinizer": "nyc --all --reporter=clover mocha test/**/*.js",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
     "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "start": "node app.js",
