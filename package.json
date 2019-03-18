@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "backend for project ramverk2",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha test/**/*.js",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
