@@ -56,10 +56,9 @@ function promiseNewUser(email, name, password) {
                 var payload = {
                     email: email,
                     name: name,
-                    //password: password
                 }
                 var token = jwt.sign(payload, secret, {expiresIn: '1h'});
-                resolve({email: email, name: name, /*password: password,*/ token: token}) //
+                resolve({email: email, name: name, token: token}) //
             }
         });
     })

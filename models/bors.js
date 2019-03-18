@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 const db = require("../db/database.js");
 const secret = process.env.JWT_SECRET;
 
+
+//genererar en förändringsfaktor
 function intRand() {
     var rand1 = Math.floor(Math.random() * 2000);
     var rand2 = Math.floor(Math.random() * 3000);
@@ -17,7 +19,7 @@ function intRand() {
     return factor1*factor2
 }
 
-
+// lägger förändringsfaktorer i en array
 function randValue() {
     var result = []
     for (var i = 0; i < 5; i++) {
@@ -27,6 +29,7 @@ function randValue() {
 }
 
 
+// tar emot befintliga börsvärden och förändrar med respektive faktoroch återsänder
 async function updateValue(inarray) {
     var varden = randValue();
     for (var i=0 ; i < 5; i++) {
@@ -36,44 +39,46 @@ async function updateValue(inarray) {
 }
 
 
+// // ta reda på aktuella börsvärden (meningslös funktion)
+// async function getValue() {
+//     var vardet = await getPromisedValue().then(function(value) {
+//         return value;
+//     });
+//     return vardet;
+// }
+//
+// // del av ovanstående (meningslös?)
+// function getPromisedValue() {
+//     return new Promise(function(resolve, reject) {
+//         db.all("SELECT * FROM bolag WHERE name = ?",
+//             "portfolj",
+//             (err, row) => {
+//                 if (err) {
+//                     // returnera error
+//                     reject(new Error("Shit! Something went wrong:" + err));
+//                 } else {
+//                     resolve(row[0])// if went well
+//                 }
+//             }
+//         )
+//     })
+// }
 
-async function getValue() {
-    var vardet = await getPromisedValue().then(function(value) {
-        return value;
-    });
-    return vardet;
-}
 
-function getPromisedValue() {
-    return new Promise(function(resolve, reject) {
-        db.all("SELECT * FROM bolag WHERE name = ?",
-            "portfolj",
-            (err, row) => {
-                if (err) {
-                    // returnera error
-                    reject(new Error("Shit! Something went wrong:" + err));
-                } else {
-                    resolve(row[0])// if went well
-                }
-            }
-        )
-    })
-}
-
-
-
+// lägger resetvärde i miljövariabel för att återställa
 async function reset() {
     console.log("databasen återställs");
     process.env.BORS="reset"
 }
 
+// söker upp persons innehav av kapital och respektive aktie
 async function showCapital(token) {
     var vardet = await promiseShowCapital(token).then(function(value) {
         return value;
     });
     return vardet;
 }
-
+// del av ovanstående
 function promiseShowCapital(token) {
     return new Promise(function(resolve, reject) {
         jwt.verify(token, secret, function(err, decoded) {
@@ -100,15 +105,14 @@ function promiseShowCapital(token) {
     })
 }
 
-
+// köp sälj viss aktie visst antal
 async function buy(token, bolag, antal) {
     await promiseBuy(token, bolag, antal).catch(function(error) {
-        console.log("Det fuckade sig: ");
+        console.log("Det blev fel: ");
         console.log(error);
     })
 };
-
-
+// till ovanstående
 function promiseBuy(token, bolag, antal) {
     return new Promise(function(resolve, reject) {
         jwt.verify(token, secret, function(err, decoded) {
@@ -131,14 +135,14 @@ function promiseBuy(token, bolag, antal) {
     })
 }
 
+// sätt in nytt kapital
 async function insert(token, cash) {
     await promiseInsert(token, cash).catch(function(error) {
         console.log("Fel vid pengainsättning: ");
         console.log(error);
     })
-    };
-
-
+};
+// hör till ovanstående
 function promiseInsert(token, cash) {
     return new Promise(function(resolve, reject) {
         jwt.verify(token, secret, function(err, decoded) {
@@ -164,7 +168,7 @@ function promiseInsert(token, cash) {
 
 module.exports = {
     updateValue: updateValue,
-    getValue: getValue,
+    //getValue: getValue,
     reset: reset,
     showCapital: showCapital,
     buy: buy,
