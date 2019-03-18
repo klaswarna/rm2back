@@ -4,7 +4,9 @@
   "description": "backend for project ramverk2",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha test/**/*.js"
+    "test": "nyc --reporter=html --reporter=text mocha test/**/*.js",
+    "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "author": "KW",
   "license": "ISC",
@@ -19,6 +21,8 @@
     "ws": "^6.2.0"
   },
   "devDependencies": {
+    "codecov": "^3.2.0",
+    "coveralls": "^3.0.3",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0"
   }
