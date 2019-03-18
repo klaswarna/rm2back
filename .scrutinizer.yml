@@ -8,10 +8,10 @@ checks:
 
 build:
     nodes:
-#        analysis:
-#            tests:
-#                override:
-#                    - js-scrutinizer-run
+        analysis:
+            tests:
+                override:
+                    - js-scrutinizer-run
 
         coverage:
             tests:
