@@ -7,7 +7,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/klaswarna/me-app/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/klaswarna/me-app/?branch=master)
 
 
-###Backend
+### Backend
 Express i node.js känns som ett stabilt och moget backendverktyg, både i sig självt och för mig, eftersom jag har använt det flera gånger förr. Att det är javascript som gäller för att skapa dynamik i webbläsaren medför att man ändå måste behärska det språket. Två flugor i en smäll alltså.
 
 Som databas använde jag sqlite. Valet föll på det, dels därför att jag precis använt det i ett annat projekt och känner mig uppdaterad, och dels för att jag ville ha minimal interferens med andra routrar på samma server som också behöver databaser. Jag tänkte att var databas i sin fil minskar den risken. För att hela projektet inte skulle vara för tungrott använde jag korta asynkrona requester direkt från node.
@@ -16,10 +16,10 @@ För att återställa aktiekurserna kan man skriva https://rm2back.kwramverk.me/
 
 För att stanna och återta ständig uppdatering i kurssimuleringen används https://rm2back.kwramverk.me/reset/stop respektive https://rm2back.kwramverk.me/reset/start
 
-###Realtid
+### Realtid
 För att frontendsidan ständigt skall kunna uppdatera aktiekurserna sänds de ut var 10:e sekund via vue-native-websocket. Så fort en användare har loggat in på aktiekurssidan kopplas hen upp mot denna service. Av praktiska skäl använde jag samma node-app som hanterar routsen att även simulera en aktiekurs och skicka ut dessa med Websocket.
 
-###Enhets- och funktionstester
+### Enhets- och funktionstester
 Jag gör enhetstester på de funktioner som kan destas separat. De flesta funktioner i programmet behöver emellertid
 kommunicera med en databas för att fungera och samspelar med varandra. Där utför jag snarare funktionstester
 genom att lägga till nya användare och påverka deras data i databasen. Rent tekniskt använder jag mocha i båda fallen
@@ -38,5 +38,5 @@ Lokalt kan du se kodtäckningen på rm2back/coverage/index.html i webbläsaren (
 Jag är nöjd med kodtäckningen eftersom alla "fungerande" fallen i business-logiken testas. Förtjänsten att testa routerna automatiskt
 är inte så stor i vilket fall.
 
-###JWT Web tokens
+### JWT Web tokens
 Jag beskriver i korthet hur JSON Web Tokens fungerar och nyttan med att använda detta. https://me-sida.kwramverk.me/#/report/jwt
