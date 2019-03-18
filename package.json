@@ -8,9 +8,12 @@
   },
   "scripts": {
     "test": "chmod 777 db && nyc --reporter=html --reporter=text mocha test/**/*.js",
-    "test-scrutinizer": "nyc --all --reporter=clover mocha test/**/*.js",
+    "test-scrutinizer": "chmod 777 db && nyc --all --reporter=clover mocha test/**/*.js",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
     "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "clean": "rm -rf npm-debug.log coverage .nyc_output",
+    "preclean-all": "npm run clean",
+    "clean-all": "rm -rf node_modules",
     "start": "node app.js",
     "production": "NODE_ENV='production' node app.js"
   },
