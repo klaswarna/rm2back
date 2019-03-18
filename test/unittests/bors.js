@@ -21,12 +21,12 @@ describe("Testing methods in bors", function() {
 
             var originalAktier = {
                 aktier: [100, 100, 100, 100, 100]
-            }
+            };
 
 
             var testAktier = {
                 aktier: [100, 100, 100, 100, 100]
-            }
+            };
 
             let res = await bors.updateValue(testAktier);
 
