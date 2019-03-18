@@ -6,6 +6,8 @@
 /* global describe it */
 
 process.env.NODE_ENV = "test";
+process.env.JWT_SECRET = "hemlighet";
+
 
 var assert = require("assert");
 const users = require("../../models/users");

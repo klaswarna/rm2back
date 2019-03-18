@@ -8,6 +8,7 @@
 var assert = require("assert");
 const bors = require("../../models/bors");
 
+
 describe("Testing methods in bors", function() {
     describe("Inject an array with 100, 100, 100, 100, 100 and modifies the values", function() {
         it("should return modefied array with slightly higher and lower values", async function() {
