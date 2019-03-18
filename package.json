@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "chmod 777 db && nyc --reporter=html --reporter=text mocha test/**/*.js",
-    "test-scrutinizer": "chmod 777 db && nyc --all --reporter=clover mocha test/**/*.js",
+    "test": "nyc --reporter=html --reporter=text mocha test/**/*.js",
+    "test-scrutinizer": "nyc --all --reporter=clover mocha test/**/*.js",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
     "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "clean": "rm -rf npm-debug.log coverage .nyc_output",
@@ -27,15 +27,15 @@
     "jsonwebtoken": "^8.5.0",
     "morgan": "^1.9.1",
     "sqlite3": "^4.0.6",
-    "ws": "^6.2.0"
+    "ws": "^6.2.0",
+    "nyc": "^13.3.0"
   },
   "devDependencies": {
     "codecov": "^3.2.0",
     "coveralls": "^3.0.3",
-    "mocha": "^6.0.2",
-    "nyc": "^13.3.0"
-},
-"repository": {
+    "mocha": "^6.0.2"
+  },
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/klaswarna/rm2back.git"
   }
