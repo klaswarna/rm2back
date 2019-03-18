@@ -8,16 +8,17 @@ checks:
 
 build:
     nodes:
-        analysis:
+#        analysis:
+#            tests:
+#                override:
+#                    - js-scrutinizer-run
+
+        coverage:
             tests:
                 override:
-                    - js-scrutinizer-run
-
-    tests:
-        override:
-            -
-                #command: 'istanbul cover --report clover test.js'
-                command: 'npm run test-scrutinizer'
-                coverage:
-                    file: 'coverage/clover.xml'
-                    format: 'clover'
+                    -
+                        #command: 'istanbul cover --report clover test.js'
+                        command: 'npm run test-scrutinizer'
+                        coverage:
+                            file: 'coverage/clover.xml'
+                            format: 'clover'
