@@ -10,6 +10,7 @@ build:
     environment:
         variables:
             JWT_SECRET: "hemlighet"
+            NODE_ENV: "test"
     nodes:
         analysis:
             tests:
