@@ -11,19 +11,7 @@ build:
         analysis:
             tests:
                 override:
-                    - js-scrutinizer-run
-
-    tests:
-        override:
-            -   command: 'npm run test-scrutinizer'
-                coverage:
-                    file: 'coverage/clover.xml'
-                    format: 'clover'
-
-        # coverage:
-        #     tests:
-        #         override:
-        #             -   command: 'npm run test-scrutinizer'
-        #                 coverage:
-        #                     file: 'coverage/clover.xml'
-        #                     format: 'clover'
+                    -   command: 'npm run test-scrutinizer'
+                        coverage:
+                            file: 'coverage/clover.xml'
+                            format: 'clover'
