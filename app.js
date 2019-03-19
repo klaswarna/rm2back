@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require('cors'); //för att kunna köra från local till local på nåt sätt
 const morgan = require('morgan');
-const port = 1337; //me-app lyssnar på 8333
+//const port = 1337; //me-app lyssnar på 8333
+const port = 8333; //me-app lyssnar på 8333
 const bodyParser = require("body-parser");
 const index = require('./routes/index');
 const signin = require('./routes/signin');
@@ -141,3 +142,5 @@ wss.on("connection", (ws /*, req*/) => {
 server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });
+
+module.exports = server;
