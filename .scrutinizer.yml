@@ -10,6 +10,8 @@ build:
     nodes:
         analysis:
             tests:
+                before:
+                    environment: {JWT_SECRET: "hemlighet"}
                 override:
                     -   command: 'npm run test-scrutinizer'
                         coverage:
