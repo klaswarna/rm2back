@@ -30,7 +30,7 @@ function randValue() {
 
 
 // tar emot befintliga börsvärden och förändrar med respektive faktoroch återsänder
-async function updateValue(inarray) {
+function updateValue(inarray) {
     var varden = randValue();
     for (var i=0 ; i < 5; i++) {
         inarray.aktier[i] = inarray.aktier[i] * varden[i];
@@ -39,34 +39,8 @@ async function updateValue(inarray) {
 }
 
 
-// // ta reda på aktuella börsvärden (meningslös funktion)
-// async function getValue() {
-//     var vardet = await getPromisedValue().then(function(value) {
-//         return value;
-//     });
-//     return vardet;
-// }
-//
-// // del av ovanstående (meningslös?)
-// function getPromisedValue() {
-//     return new Promise(function(resolve, reject) {
-//         db.all("SELECT * FROM bolag WHERE name = ?",
-//             "portfolj",
-//             (err, row) => {
-//                 if (err) {
-//                     // returnera error
-//                     reject(new Error("Shit! Something went wrong:" + err));
-//                 } else {
-//                     resolve(row[0])// if went well
-//                 }
-//             }
-//         )
-//     })
-// }
-
-
 // lägger resetvärde i miljövariabel för att återställa
-async function reset() {
+function reset() {
     console.log("databasen återställs");
     process.env.BORS="reset"
 }
