@@ -1,5 +1,5 @@
 checks:
-    javascript: true
+    nodejs: true
 
 #build:
     #dependencies:
