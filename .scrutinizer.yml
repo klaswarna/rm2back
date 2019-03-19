@@ -20,3 +20,7 @@ build:
                         coverage:
                             file: 'coverage/clover.xml'
                             format: 'clover'
+        analysis2:
+            tests:
+                override:
+                    -   js-scrutinizer-run
