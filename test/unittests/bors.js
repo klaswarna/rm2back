@@ -17,7 +17,7 @@ const bors = require("../../models/bors");
 
 describe("Testing methods in bors", function() {
     describe("Inject an array with 100, 100, 100, 100, 100 and modifies the values", function() {
-        it("should return modefied array with slightly higher and lower values", async function() {
+        it("should return modefied array with slightly higher and lower values", function() {
 
             var originalAktier = {
                 aktier: [100, 100, 100, 100, 100]
@@ -28,7 +28,7 @@ describe("Testing methods in bors", function() {
                 aktier: [100, 100, 100, 100, 100]
             };
 
-            let res = await bors.updateValue(testAktier);
+            let res = bors.updateValue(testAktier);
 
 
             assert.notEqual(res, originalAktier);
