@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha test/**/*.js",
-    "test-scrutinizer": "yc --all --reporter=clover mocha 'test/**/*.js'",
+    "test-scrutinizer": "nyc --all --reporter=clover mocha 'test/**/*.js'",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
     "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "clean": "rm -rf npm-debug.log coverage .nyc_output",
