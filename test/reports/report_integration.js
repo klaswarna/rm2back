@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 
 
-describe('Start', () => {
+describe('index', () => {
 
     describe('GET /', () => {
         it('200 HAPPY PATH', (done) => {
@@ -22,6 +22,40 @@ describe('Start', () => {
                     res.body.should.be.an("object");
                     res.body.msg.should.be.a("string");
 
+                    done();
+                });
+        });
+    });
+
+});
+
+
+describe('Reset', () => {
+
+    describe('GET /', () => {
+        it('200 HAPPY PATH', (done) => {
+            chai.request(server)
+                .get("/reset/stop")
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.an("object");
+                    done();
+                });
+        });
+    });
+
+});
+
+
+describe('Reset', () => {
+
+    describe('GET /', () => {
+        it('200 HAPPY PATH', (done) => {
+            chai.request(server)
+                .get("/reset/start")
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.an("object");
                     done();
                 });
         });
