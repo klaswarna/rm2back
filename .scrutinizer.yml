@@ -7,11 +7,12 @@ checks:
             #- npm install istanbul   # or add it as part of your package.json
 
 build:
+    environment:
+        variables:
+            JWT_SECRET: "hemlighet"
     nodes:
         analysis:
             tests:
-                before:
-                    environment: {JWT_SECRET: "hemlighet"}
                 override:
                     -   command: 'npm run test-scrutinizer'
                         coverage:
