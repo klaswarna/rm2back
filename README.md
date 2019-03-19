@@ -20,23 +20,25 @@ För att stanna och återta ständig uppdatering i kurssimuleringen används htt
 För att frontendsidan ständigt skall kunna uppdatera aktiekurserna sänds de ut var 10:e sekund via vue-native-websocket. Så fort en användare har loggat in på aktiekurssidan kopplas hen upp mot denna service. Av praktiska skäl använde jag samma node-app som hanterar routsen att även simulera en aktiekurs och skicka ut dessa med Websocket.
 
 ### Enhets- och funktionstester
-Jag gör enhetstester på de funktioner som kan destas separat. De flesta funktioner i programmet behöver emellertid
+Jag gör enhetstester på de funktioner som kan testas separat. De flesta funktioner i programmet behöver emellertid
 kommunicera med en databas för att fungera och samspelar med varandra. Där utför jag snarare funktionstester
 genom att lägga till nya användare och påverka deras data i databasen. Rent tekniskt använder jag mocha i båda fallen
 samt en testdatabas där jag lägger in användare med slumpmässiga namn.
 
-Jag uppnår drygt 70% kodtäckning. Den kod som inte testas är kod som skulle kasta alla möjliga felmeddelanden om
-databassökningarna inte hade lyckats. Ointressant att testa och skulle riskera andra bekymmer när testfallen körs.
+Jag uppnår drygt 70% kodtäckning i mina testfall när jag testas lokalt. Den kod som inte testas är kod som skulle kasta alla möjliga felmeddelanden om
+databassökningarna inte hade lyckats. Knepigare att testa och skulle riskera andra bekymmer när testfallen körs.
 
-Det framgick inga krav på inegrationstester. Därför har jag inte heller brytt mig om att testa routsen som annars
-svårligen låter sig testas med enbart enhetstester.
+Lokalt kan man se kodtäckningen på rm2back/coverage/index.html i webbläsaren (i den folder du klonat repot).
 
-Automatiserade tester utförs av travis, circleCI och Scrutinizer.
+Det framgick inga krav på integrationstester. Därför har jag inte heller brytt mig om att testa routsen som annars
+svårligen låter sig testas med enbart enhetstester. Detta gör att Scrutinizer endast tycker att 34% av koden är testad.
 
-Lokalt kan du se kodtäckningen på rm2back/coverage/index.html i webbläsaren (i den folder du klonat repot)
+Automatiserade tester utförs av travis, circleCI och Scrutinizer. Den sistnämnda strulade mäkta denna gång, tills jag fick rätt version
+på node via konfigurationsfilen. Så totalt sett hade jag hunnit testa allt för hand tio gånger om på samma tid som det tog att få ordning på CI-kedjan, men
+till nästa gång har jag mera koll. Men förtjänsten blir nog större ju fler komplexa klasser och funktioner man har i förhållande till enkla router och databassök.
 
-Jag är nöjd med kodtäckningen eftersom alla "fungerande" fallen i business-logiken testas. Förtjänsten att testa routerna automatiskt
-är inte så stor i vilket fall.
+Jag är någorlunda nöjd med kodtäckningen eftersom alla "fungerande" fallen i business-logiken testas. Att själva routerna inte testats separat
+spelar mindre roll då funktionerna de använder tycks fungera.
 
 ### JWT Web tokens
 Jag beskriver i korthet hur JSON Web Tokens fungerar och nyttan med att använda detta. https://me-sida.kwramverk.me/#/report/jwt
