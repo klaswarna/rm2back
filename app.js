@@ -143,4 +143,4 @@ server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });
 
-module.exports = server;
+//module.exports = server; om man ville köra integration-grejset
