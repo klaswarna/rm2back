@@ -1,5 +1,5 @@
 checks:
-    nodejs: true
+    javascript: true
 
 #build:
     #dependencies:
@@ -11,6 +11,7 @@ build:
         variables:
             JWT_SECRET: "hemlighet"
             NODE_ENV: "test"
+        node: "v10.14.2"
     nodes:
         analysis:
             tests:
