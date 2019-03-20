@@ -33,9 +33,8 @@ Lokalt kan man se kodtäckningen på rm2back/coverage/index.html i webbläsaren 
 Det framgick inga krav på integrationstester. Därför har jag inte heller brytt mig om att testa routsen som annars
 svårligen låter sig testas med enbart enhetstester. Detta gör att Scrutinizer endast tycker att 34% av koden är testad.
 
-Automatiserade tester utförs av travis, circleCI och Scrutinizer. Den sistnämnda strulade mäkta denna gång, tills jag fick rätt version
-på node via konfigurationsfilen. Så totalt sett hade jag hunnit testa allt för hand tio gånger om på samma tid som det tog att få ordning på CI-kedjan, men
-till nästa gång har jag mera koll. Men förtjänsten blir nog större ju fler komplexa klasser och funktioner man har i förhållande till enkla router och databassök.
+Automatiserade tester utförs av travis, circleCI och Scrutinizer. Lite strul med den sistnämnda, men nu kan
+jag det bättre till nästa gång. Men förtjänsten blir nog större ju fler komplexa klasser och funktioner man har i förhållande till enkla router och databassök.
 
 Jag är någorlunda nöjd med kodtäckningen eftersom alla "fungerande" fallen i business-logiken testas. Att själva routerna inte testats separat
 spelar mindre roll då funktionerna de använder tycks fungera.

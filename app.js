@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
-const cors = require('cors'); //för att kunna köra från local till local på nåt sätt
+const cors = require('cors');
 const morgan = require('morgan');
 const port = 1337; //me-app lyssnar på 8333
-//const port = 8333; // behövde vara så för att köra chai
 const bodyParser = require("body-parser");
 const index = require('./routes/index');
 const signin = require('./routes/signin');
@@ -100,13 +99,12 @@ function handleProtocols(protocols , request) {
 }
 
 
-// Broadcast data to everyone except one self (ws).
+// Broadcast data to everyone connected
 wss.broadcast = (data) => {
     let clients = 0;
 
     wss.clients.forEach((client) => {
-        //if (client !== ws && client.readyState === Websocket.OPEN) { // för att inte skicka till sig själv
-        if (client.readyState === Websocket.OPEN) { // för att även skicka till sig själv
+        if (client.readyState === Websocket.OPEN) {
             clients++;
                 client.send(data); // detta sänder
             }
@@ -142,5 +140,3 @@ wss.on("connection", (ws /*, req*/) => {
 server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });
-
-//module.exports = server; om man ville köra integration-grejset

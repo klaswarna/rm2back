@@ -22,9 +22,6 @@ CREATE TABLE IF NOT EXISTS users (
     UNIQUE(email)
 );
 
---INSERT INTO users (name, email, password)
---VALUES ("sune", "sune", "sune");
-
 
 DROP TABLE IF EXISTS innehav;
 
@@ -38,6 +35,3 @@ CREATE TABLE IF NOT EXISTS innehav (
     stock5 INT,
     UNIQUE(email)
 );
-
---INSERT INTO innehav (email, kapital, stock1, stock2, stock3, stock4, stock5)
---VALUES ("sune", 0,0,0,0,0,0);

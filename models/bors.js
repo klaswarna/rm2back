@@ -68,7 +68,7 @@ function promiseShowCapital(token) {
                         reject({error: "Något blev fel vid check av innehav: " + err});
                     } else {
                         if (row.length == 0) {
-                            resolve({}) //eventuellt skicka nåt relevant meddelande här att inloggningsuppg.felaktiga
+                            resolve({})
                         } else {
                             resolve({capital:row[0].kapital, stock: [row[0].stock1, row[0].stock2, row[0].stock3, row[0].stock4, row[0].stock5]})
                         }
@@ -142,7 +142,6 @@ function promiseInsert(token, cash) {
 
 module.exports = {
     updateValue: updateValue,
-    //getValue: getValue,
     reset: reset,
     showCapital: showCapital,
     buy: buy,
